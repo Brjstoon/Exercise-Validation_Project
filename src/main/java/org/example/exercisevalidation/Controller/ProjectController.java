@@ -69,6 +69,9 @@ public class ProjectController {
                     projects.get(i).setStatus("completed");
                     return ResponseEntity.status(200).body(new ApiResponse("Project Status Changed Into completed"));
                 }else {
+                    if (projects.get(i).getStatus().equalsIgnoreCase("completed")){
+                        return ResponseEntity.status(400).body(new ApiResponse("Project is Completed and can't be changed"));
+                    }
                     projects.get(i).setStatus("not started");
                     return ResponseEntity.status(200).body(new ApiResponse("Project Status Changed Into not started"));
                 }
